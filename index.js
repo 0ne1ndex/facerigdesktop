@@ -45,7 +45,7 @@ function drawOneFrame() {
 
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
   var imgdata = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  //反相处理
+  //去除绿幕
   for (var i = 0; i < imgdata.height; ++i) {
     for (var j = 0; j < imgdata.width; ++j) {
       var x = i * 4 * imgdata.width + 4 * j,
@@ -57,7 +57,6 @@ function drawOneFrame() {
       if (offset < maxOffset) {
         imgdata.data[x + 3] = 0
       }
-      //图片反相：
     }
   }
   ctx.putImageData(imgdata, 0, 0);
