@@ -89,11 +89,21 @@ function initTray() {
             win.webContents.send('restart')
         }
     });
+    let console = new electron.MenuItem({
+        label: '控制台',
+        type: 'normal',
+        click: function () {
+            win.setIgnoreMouseEvents(false)
+            win.webContents.openDevTools({
+                mode: 'bottom'
+            })
+        }
+    });
     let menu = new electron.Menu()
     menu.append(microphone)
     menu.append(restart)
+    menu.append(console)
     menu.append(quit)
-
     tray.setContextMenu(menu)
 }
 
